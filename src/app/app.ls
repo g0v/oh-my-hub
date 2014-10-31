@@ -12,4 +12,7 @@ angular.module \OhMyHub, <[
   $urlRouterProvider.otherwise \/project
 .controller \AppCtrl, ($scope, $location) ->
 
-.run ->
+.run ['$rootScope', '$state', '$stateParams', ($rootScope,   $state,   $stateParams) ->
+  $rootScope.$state = $state
+  $rootScope.$stateParams = $stateParams
+]
