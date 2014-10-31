@@ -1,0 +1,18 @@
+section#projects.views
+  #filter
+    .ui.large.label(ng-repeat="filter in filters") {{filter.name}}
+      i.icon.delete
+  #count showing {{projects_count.current}} out of {{projects_count.total}} projects
+  #list.ui.two.column.stackable.grid
+    article.column.project(ng-repeat="project in projects")
+      .wrapper
+        a.ui.image(href="", target="_blank")
+          img(ng-src="{{project.screenshot_url}}")
+        .content
+          h3.ui.header
+            span.text {{project.name}}
+          p.description {{project.description}}
+          p.achievement(ng-repeat="achievement in project.achievements")
+            a.ui.large.label(href="{{achievement.link}}", target="_blank")
+              i.icon {{achievement.name}}
+              i.icon.forward.mail

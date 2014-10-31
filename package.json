@@ -1,0 +1,23 @@
+{
+  "author": {
+    "name": [
+      "Chen Hsin-Yi"
+    ],
+    "email": "ossug.hychen@gmail.com"
+  },
+  "name": "oh-my-hub",
+  "description": "Oh! My Hub",
+  "version": "0.0.1",
+  "engines": {
+    "node": "*"
+  },
+  "devDependencies": {
+    "beef-soup": "../../hychen/beef-soup/",
+    "gulp":"*",
+    "gulp-jade": "0.9.x",
+    "gulp-compass": "^2.0.0",
+    "gulp-livescript": "1.1.x",
+    "testem": "0.6.18",
+    "gulp-testem": "0.0.1"
+  }
+}

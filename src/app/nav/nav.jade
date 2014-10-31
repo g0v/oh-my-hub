@@ -1,0 +1,36 @@
+nav#sidebar(ng-controller="NavCtrl")
+  .ui.menu.no.margin
+    .ui.dropdown.item  Project Hub
+        i.icon.dropdown
+        .menu
+          a.item Resource Hub[TBD]
+          a.item Project Hub[TBD]
+          a.item Charts[TBD]
+    .right.menu
+      .ui.dropdown.icon.item
+        i.icon.ellipsis.vertical
+        .menu
+          .item(ng-click="goto('/wiki')")
+            i.icon.pencil
+            | Edit pending data
+            //-i.icon.forward.mail.right
+          .item(ng-click="goto('/project')")
+            i.icon.unhide
+            | View projects
+          .item(ng-click="goto('/about')")
+            i.icon.help
+            | About
+  #search.field
+    .ui.icon.input
+      input(placeholder="search...", type="text")
+      i.icon.search
+  #index.ui.vertical.fluid.menu.no.margin
+    div.ui.accordion(ng-repeat="menu_item in menu_items")
+      div.title.header.item(ng-click="toggle[menu_item.name] = !toggle[menu_item.name]" ng-class="{'active':toggle[menu_item.name]}") {{menu_item.name}} ({{menu_item.sub_items.length}})
+        i.icon.dropdown
+      .content.ui.small.menu(ng-class="{'active':toggle[menu_item.name]}")
+        .menu
+          a.item(ng-repeat="sub_item in menu_item.sub_items")
+            .ui.label {{sub_item.count}}
+            {{sub_item.name}}
+
