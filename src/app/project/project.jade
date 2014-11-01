@@ -7,12 +7,12 @@ section#projects.views
     article.column.project(ng-repeat="project in projects")
       .wrapper
         a.ui.image(href="", target="_blank")
-          img(ng-src="{{project.screenshot_url}}")
+          img(ng-src="{{project.logo}}")
         .content
           h3.ui.header
-            span.text {{project.name}}
-          p.description {{project.description}}
-          p.achievement(ng-repeat="achievement in project.achievements")
+            span.text {{project.name.zh}}
+          p.description {{project.intro.short}}
+          p.achievement(ng-repeat="achievement in project.achievement")
             a.ui.large.label(href="{{achievement.link}}", target="_blank")
-              i.icon {{achievement.name}}
+              i.icon(ng-class="icon_css[achievement.type]") {{achievement.type}}
               i.icon.forward.mail
