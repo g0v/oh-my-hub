@@ -11,8 +11,9 @@ section#projects.views
         .content
           h3.ui.header
             span.text {{project.name.zh}}
-          p.description {{project.intro.short}}
-          p.achievement(ng-repeat="achievement in project.achievement")
-            a.ui.large.label(href="{{achievement.link}}", target="_blank")
-              i.icon(ng-class="icon_css[achievement.type]") {{achievement.type}}
+          p.description {{project.intro.zh.short}}
+          p.achievement
+            a.ui.large.label(href="{{achievement.link}}", target="_blank" ng-repeat="achievement in project.achievement")
+              i.icon(ng-class="icon_css[achievement.type]") 
+              {{achievement.type}}
               i.icon.forward.mail
