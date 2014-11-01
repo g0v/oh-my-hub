@@ -1,10 +1,10 @@
 section#projects.views
   #filter
-    .ui.large.label(ng-repeat="filter in filters") {{filter.name}}
+    .ui.large.label(ng-repeat="filter_attr in filters.attributes") {{filter_attr.name}}
       i.icon.delete
-  #count showing {{projects_count.current}} out of {{projects_count.total}} projects
+  #count showing {{filterd_projects.length}} out of {{projects.length}} projects
   #list.ui.two.column.stackable.grid
-    article.column.project(ng-repeat="project in projects")
+    article.column.project(ng-repeat="project in projects | filter:filters.search_text as filterd_projects")
       .wrapper
         a.ui.image(href="", target="_blank")
           img(ng-src="{{project.logo}}")

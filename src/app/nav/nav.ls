@@ -2,7 +2,20 @@ angular.module 'OhMyHub.nav', <[
   ui.router
 ]>
 
-.controller \NavCtrl, ($scope, $location) ->
+.factory 'Nav', ->
+  filters = do
+    attributes:  [
+        * name: '電子商務'
+        * name: '種子階段'
+        * name: '獨資'
+    ]
+    search_text: null
+
+  do
+    get_filters: -> filters
+
+.controller \NavCtrl, ($scope, $location, Nav) ->
+  $scope.filters = Nav.get_filters!
   $scope.menu_items = [
     * name: 'category'
       toggle: true

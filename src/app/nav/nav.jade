@@ -22,7 +22,7 @@ nav#sidebar(ng-controller="NavCtrl")
             | About
   #search.field
     .ui.icon.input
-      input(placeholder="search...", type="text")
+      input(placeholder="search...", type="text" ng-model="filters.search_text")
       i.icon.search
   #index.ui.vertical.fluid.menu.no.margin
     div.ui.accordion(ng-repeat="menu_item in menu_items")
