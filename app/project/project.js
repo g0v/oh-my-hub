@@ -9,7 +9,7 @@ angular.module('OhMyHub.project', ['ui.router']).config(function($stateProvider)
   return {
     get: function(done){
       console.log("pulling project list.");
-      return $http.get('/assests/project-list.json', {
+      return $http.get('assests/project-list.json', {
         cache: true
       }).success(function(it){
         console.log("synced project list.");

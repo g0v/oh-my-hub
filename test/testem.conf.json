@@ -1,0 +1,11 @@
+{
+    "framework": "mocha+chai",
+    "src_files": [
+        "build/vendor/jquery.min.js",
+        "build/vendor/angular.min.js",
+        "build/vendor/angular-mocks.js",
+        "build/vendor/angular-ui-router.min.js",
+        "build/common/*!(spec).js",
+        "build/app/**/*!(spec).js"
+    ]
+}
