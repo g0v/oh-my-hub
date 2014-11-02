@@ -10,7 +10,7 @@ angular.module 'OhMyHub.project', <[
       controller: \ProjectCtrl
       templateUrl: \app/project/project.html
 
-.controller \ProjectCtrl, ($scope, $http, Nav) ->
+.controller \ProjectCtrl, ($scope, $http, NavFilters) ->
   $scope.icon_css = {
     "Android": "android",
     "iOS": "apple",
@@ -26,7 +26,7 @@ angular.module 'OhMyHub.project', <[
     "Document": "text file",
     "Media":"bullhorn" 
   }    
-  $scope.filters = Nav.get_filters!
+  $scope.filters = NavFilters.get!
   $scope.projects = []
 
   $http.get '/assests/project-list.json'
