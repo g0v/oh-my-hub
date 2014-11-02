@@ -10,7 +10,11 @@ angular.module 'OhMyHub.project', <[
       controller: \ProjectCtrl
       templateUrl: \app/project/project.html
 
-.controller \ProjectCtrl, ($scope, $http, NavFilters) ->
+.factory 'Projects', ($http) ->
+  do 
+    get: -> $http.get '/assests/project-list.json'
+
+.controller \ProjectCtrl, ($scope, NavFilters, Projects) ->
   $scope.icon_css = {
     "Android": "android",
     "iOS": "apple",
@@ -27,10 +31,6 @@ angular.module 'OhMyHub.project', <[
     "Media":"bullhorn" 
   }    
   $scope.filters = NavFilters.get!
-  $scope.projects = []
-
-  $http.get '/assests/project-list.json'
-    .success (data) ->
-      $scope.projects = data
-    .error (data) -> 
-      console.error data
+  Projects.get!
+    .success -> $scope.projects = it
+    .error -> console.error it
