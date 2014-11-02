@@ -12,7 +12,15 @@ angular.module 'OhMyHub.project', <[
 
 .factory 'Projects', ($http) ->
   do 
-    get: -> $http.get '/assests/project-list.json'
+    get: (done) -> 
+      console.log "pulling project list."
+      $http.get '/assests/project-list.json', {+cache}
+        .success ->
+          console.log "synced project list."
+          done it
+        .error -> 
+          console.error it
+          done []
 
 .controller \ProjectCtrl, ($scope, NavFilters, Projects) ->
   $scope.icon_css = {
@@ -31,6 +39,4 @@ angular.module 'OhMyHub.project', <[
     "Media":"bullhorn" 
   }    
   $scope.filters = NavFilters.get!
-  Projects.get!
-    .success -> $scope.projects = it
-    .error -> console.error it
+  $scope.projects <- Projects.get!
