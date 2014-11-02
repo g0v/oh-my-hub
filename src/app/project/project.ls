@@ -14,7 +14,7 @@ angular.module 'OhMyHub.project', <[
   do 
     get: (done) -> 
       console.log "pulling project list."
-      $http.get '/assests/project-list.json', {+cache}
+      $http.get 'assests/project-list.json', {+cache}
         .success ->
           console.log "synced project list."
           done it
