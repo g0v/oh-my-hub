@@ -9,6 +9,18 @@ angular.module 'OhMyHub.nav', <[
 
   do
     get: -> filters
+    add: (v) ->
+      console.log "Added filter attribute: #{v}"
+      unless v in filters.attributes
+        filters.attributes.push v
+      else
+        throw "should not add a duplicated attribute into filters."
+    del: (v) ->
+      if filters.attributes.length > 0
+        console.log "Removed filter attribute: #{v}"
+        filters.attributes.splice (filters.attributes.indexOf v), 1
+      else
+        throw "should not remove a attribute from filters."
 
 .factory 'NavMenu', ->
   menu = {}
@@ -41,5 +53,10 @@ angular.module 'OhMyHub.nav', <[
   $scope.menu = menu
   $scope.toggle = toggle
 
+  $scope.toggleFilter = (v) ->
+    if v in $scope.filters.attributes
+      NavFilters.del v
+    else
+      NavFilters.add v
   $scope.goto = ->
     $location.path it

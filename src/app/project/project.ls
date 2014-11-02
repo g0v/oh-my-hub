@@ -39,4 +39,5 @@ angular.module 'OhMyHub.project', <[
     "Media":"bullhorn" 
   }    
   $scope.filters = NavFilters.get!
+  $scope.delFilter = NavFilters.del
   $scope.projects <- Projects.get!

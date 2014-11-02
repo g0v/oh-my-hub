@@ -1,7 +1,7 @@
 section#projects.views
   #filter
-    .ui.large.label(ng-repeat="filter_attr in filters.attributes") {{filter_attr.name}}
-      i.icon.delete
+    .ui.large.label(ng-repeat="filter_attr in filters.attributes") {{filter_attr}}
+      i.icon.delete(ng-click="delFilter(filter_attr)")
   #count showing {{filterd_projects.length}} out of {{projects.length}} projects
   #list.ui.two.column.stackable.grid
     article.column.project(ng-repeat="project in projects | filter:filters.search_text as filterd_projects")

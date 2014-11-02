@@ -30,7 +30,7 @@ nav#sidebar(ng-controller="NavCtrl")
         i.icon.dropdown
       .content.ui.small.menu(ng-class="{'active':toggle[menu_name]}")
         .menu
-          a.item(ng-repeat="(item_name, item_count) in menu_items")
+          a.item(ng-click="toggleFilter(item_name)" ng-repeat="(item_name, item_count) in menu_items")
             .ui.label {{item_count}}
             {{item_name}}
 
