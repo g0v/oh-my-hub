@@ -10,21 +10,30 @@ angular.module 'OhMyHub.nav', <[
   do
     get: -> filters
 
-.controller \NavCtrl, ($scope, $location, NavFilters) ->
+.factory 'NavMenu', ->
+  menu = {}
+  counts = {}
+  do
+    create: (projects) ->
+      for project in projects
+        for attrname in <[category tag tool license]>
+          attrval = project[attrname] 
+          unless menu[attrname]?
+            menu[attrname] = {}
+          for val in attrval
+            unless menu[attrname][val]?
+              menu[attrname][val] = 1
+            else
+              menu[attrname][val] += 1
+            counts[attrname] = Object.keys menu[attrname] .length
+      return [menu, counts]
+
+.controller \NavCtrl, ($scope, $location, NavMenu, NavFilters, Projects) ->
   $scope.filters = NavFilters.get!
-  $scope.menu_items = [
-    * name: 'category'
-      toggle: true
-      sub_items: [
-        * name: "開放資料"
-          count: 24
-      ]
-    * name: 'tools'
-      sub_items: [
-        * name: "開放資料"
-          count: 24
-      ]      
-  ]
+  projects <- Projects.get!
+  [menu, counts] = NavMenu.create projects
+  $scope.counts = counts
+  $scope.menu = menu
 
   $scope.toggle = {
     "switcher": true

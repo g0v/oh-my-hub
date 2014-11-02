@@ -25,12 +25,12 @@ nav#sidebar(ng-controller="NavCtrl")
       input(placeholder="search...", type="text" ng-model="filters.search_text")
       i.icon.search
   #index.ui.vertical.fluid.menu.no.margin
-    div.ui.accordion(ng-repeat="menu_item in menu_items")
-      div.title.header.item(ng-click="toggle[menu_item.name] = !toggle[menu_item.name]" ng-class="{'active':toggle[menu_item.name]}") {{menu_item.name}} ({{menu_item.sub_items.length}})
+    div.ui.accordion(ng-repeat="(menu_name, menu_items) in menu")
+      div.title.header.item(ng-click="toggle[menu_name] = !toggle[menu_name]" ng-class="{'active':toggle[menu_name]}") {{menu_name}} ({{counts[menu_name]}})
         i.icon.dropdown
-      .content.ui.small.menu(ng-class="{'active':toggle[menu_item.name]}")
+      .content.ui.small.menu(ng-class="{'active':toggle[menu_name]}")
         .menu
-          a.item(ng-repeat="sub_item in menu_item.sub_items")
-            .ui.label {{sub_item.count}}
-            {{sub_item.name}}
+          a.item(ng-repeat="(item_name, item_count) in menu_items")
+            .ui.label {{item_count}}
+            {{item_name}}
 
