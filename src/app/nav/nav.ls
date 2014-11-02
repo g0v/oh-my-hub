@@ -18,17 +18,19 @@ angular.module 'OhMyHub.nav', <[
   do
     create: (projects) ->
       for project in projects
-        for attrname in <[category tag tool license]>
+        for attrname in <[category type tag tool license]>
           toggle[attrname] = false
-          attrval = project[attrname] 
+          attrval = project[attrname] or []
           unless menu[attrname]?
             menu[attrname] = {}
+            counts[attrname] = 0
           for val in attrval
             unless menu[attrname][val]?
               menu[attrname][val] = 1
             else
               menu[attrname][val] += 1
-            counts[attrname] = Object.keys menu[attrname] .length
+            if menu[attrname]
+              counts[attrname] = Object.keys menu[attrname] .length
       return [menu, counts, toggle]
 
 .controller \NavCtrl, ($scope, $location, NavMenu, NavFilters, Projects) ->
