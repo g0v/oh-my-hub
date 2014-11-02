@@ -8,14 +8,55 @@ section#projects.views
   #list.ui.two.column.stackable.grid
     article.column.project(ng-repeat="project in projects | filter:filters.attributes:true | filter:filters.search_text as filterd_projects")
       .wrapper
-        a.ui.image(href="", target="_blank")
+        a.ui.image(href="{{project.homepage}}", target="_blank")
           img(ng-src="{{project.logo}}")
         .content
-          h3.ui.header
+          h3.ui.header(ng-click="showDetail(project)")
             span.text {{project.name.zh}}
           p.description {{project.intro.zh.short}}
           p.achievement
-            a.ui.large.label(href="{{achievement.link}}", target="_blank" ng-repeat="achievement in project.achievement")
+            a.ui.large.label(href="{{achievement.url}}", target="_blank" ng-repeat="achievement in project.achievement")
               i.icon(ng-class="icon_css[achievement.type]") 
               {{achievement.type}}
               i.icon.forward.mail
+section#project.views                
+  .ui.dimmer.page(ng-click="toggle.detail = !toggle.detail" ng-class="{'active':toggle.detail}")
+    .ui.large.modal.project(ng-class="{'active':toggle.detail}") 
+      a.ui.image(href="{{detail.homepage}}", target="_blank")
+        img(ng-src="{{detail.logo}}")
+      h3.ui.header {{detail.name.zh}}
+      p.description {{detail.intro.zh.short}}
+      p.achievement
+        a.ui.large.label(href="{{achievement.url}}", target="_blank" ng-repeat="achievement in detail.achievement")
+          i.icon(ng-class="icon_css[achievement.type]") 
+          {{achievement.type}}
+          i.icon.forward.mail
+      .ui.divider.clear.both  
+      .ui.two.column.stackable.grid
+        .column
+          .ui.grid
+            .row
+              .column.four.wide 專案分類
+              .column.twelve.wide.category 
+                .ui.large.label(ng-repeat="category in detail.category") {{category}}
+              .column.four.wide 標籤
+              .column.twelve.wide.tag
+                .ui.large.label(ng-repeat="tag in detail.tag") {{tag}}
+              .column.four.wide 介紹
+              .column.twelve.wide.story
+                a.ui.large.label(href="story.url", target="_blank", ng-repeat="story in detail.story") {{story.title}}
+        .column                
+          .ui.grid
+            .row
+              .column.four.wide 授權
+              .column.twelve.wide.license
+                .ui.large.label(ng-repeat="license in detail.license") {{license}}
+              .column.four.wide 使用工具
+              .column.twelve.wide.tool
+                 .ui.large.label(ng-repeat="tool in detail.tool") {{tool}}
+              .column.four.wide 資料來源
+              .column.twelve.wide.resource
+                a.ui.large.label(href="resource.url", target="_blank", ng-repeat="resource in detail.resource") {{resource.name}}
+              .column.four.wide 工作區
+              .column.twelve.wide.workspace
+                 a.ui.large.label(href="workspace.url", target="_blank", ng-repeat="workspace in detail.workspace") {{workspace.name}}

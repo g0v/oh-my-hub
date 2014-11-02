@@ -38,6 +38,11 @@ angular.module 'OhMyHub.project', <[
     "Document": "text file",
     "Media":"bullhorn" 
   }    
+  $scope.toggle = do 
+    detail: false
   $scope.filters = NavFilters.get!
   $scope.delFilter = NavFilters.del
   $scope.projects <- Projects.get!
+  $scope.showDetail = (detail) ->
+    $scope.detail = detail
+    $scope.toggle.detail = true
