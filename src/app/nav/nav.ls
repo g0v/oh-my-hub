@@ -2,7 +2,10 @@ angular.module 'OhMyHub.nav', <[
   ui.router
 ]>
 
+
+
 .factory 'NavFilters', ->
+  _ = require 'prelude-ls'  
   filters = do
     attributes:  {}
     search_text: null
@@ -22,11 +25,10 @@ angular.module 'OhMyHub.nav', <[
     del: (c, v) ->
       if filters.attributes[c]? and filters.attributes[c].length > 0
         console.log "Removed filter attribute: #{v}"
-        filters.attributes[c].splice (filters.attributes[c].indexOf v), 1
-        filters.indicators.splice (filters.indicators.indexOf {name:v, category:c}), 1
+        filters.attributes[c] = _.reject (-> angular.equals it, v), filters.attributes[c]
+        filters.indicators = _.reject (-> angular.equals it, {name:v, category:c}), filters.indicators
         if filters.attributes[c].length == 0
           delete filters.attributes[c]
-          filters.indicators = []
       else
         throw "should not remove a attribute from empty filters."
 
