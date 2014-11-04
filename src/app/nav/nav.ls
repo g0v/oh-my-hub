@@ -8,7 +8,6 @@ angular.module 'OhMyHub.nav', <[
   _ = require 'prelude-ls'  
   filters = do
     attributes:  {}
-    search_text: null
     indicators: []
 
   do
