@@ -81,4 +81,25 @@ describe 'Nav module', ->
       NavFilters <- inject
       expect (-> NavFilters.del "category", "Attr1") .to.throw Error
       done!
-    
+  describe 'NavCtrl', -> ``it``    
+    var scope, ctrl
+    beforeEach (done) ->
+      $rootScope, $controller <- inject
+      scope := $rootScope.$new!
+      ctrl := $controller
+      done!
+    .. "get empty items.", (done) ->
+      ctrl 'NavCtrl', $scope: scope, Projects: get: (done) -> done []
+      expect scope.menu .to.deep.eq {}
+      expect scope.counts .to.deep.eq {}
+      done!
+    .. "get items in valid format.", (done) ->
+      res = [
+        * category: <[C1]>
+        * category: <[C1]>
+        * category: <[C1]>
+      ]
+      ctrl 'NavCtrl', $scope: scope, Projects: get : (done) -> done res
+      expect scope.menu.category.C1 .to.eq 3
+      expect scope.counts.category .to.eq 1
+      done!
