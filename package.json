@@ -24,6 +24,6 @@
     "gulp-compass": "^2.0.0",
     "gulp-livescript": "1.1.x",
     "testem": "0.6.18",
-    "gulp-testem": "0.0.1"
+    "gulp-testem": "git://github.com/jgrenon/gulp-testem.git"
   }
 }
