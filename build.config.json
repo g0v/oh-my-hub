@@ -12,6 +12,7 @@
 		"config": {
 			"framework": "mocha+chai",
 			"src_files": [
+				"build/vendor/prelude-browser-min.js",
 				"build/vendor/jquery.min.js",
 				"build/vendor/angular.min.js",
 				"build/vendor/angular-mocks.js",
