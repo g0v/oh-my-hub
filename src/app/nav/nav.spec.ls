@@ -2,6 +2,33 @@ expect = chai.expect
 describe 'Nav module', ->
   beforeEach ->
     module 'OhMyHub.nav'
+  describe "NavMenu", -> ``it``
+    .. "shows categories with counts.", (done) ->
+      attrs = <[category type tag tool license]>
+      NavMenu <- inject
+      [menu, counts, toggle] = NavMenu.create [      
+        * name: 1
+        * name: 2
+        * name: 3
+      ]
+      for I in attrs
+        expect counts[I] .to.eq 0
+        expect menu[I] .to.deep.eq {}
+
+      for I in attrs
+        [menu, counts, toggle] = NavMenu.create [
+          * "#I": <[C1]>
+          * "#I": <[C2]>
+          * "#I": <[C2]>
+          * "#I": <[C3]>
+          * name: 1
+        ]
+        expect toggle.switch .to.be.not.ok
+        expect toggle[I] .to.be.not.ok
+        expect counts[I] .to.eq 3
+        expect menu[I].C1 .to.eq 1
+        expect menu[I].C2 .to.eq 2
+      done!
   describe "NavFilter service", -> ``it``
     .. 'indicats current applied conditions.', (done) -> 
       NavFilters <- inject 
