@@ -14,6 +14,7 @@ angular.module 'OhMyHub.nav', <[
   do
     get: -> filters
     add: (c, v) ->
+      throw new Erro "try to add undifined condition into filters." unless c? and v?
       console.log "Added filter attribute: #{v}"
       unless filters.attributes[c]?
         filters.attributes[c] = []
@@ -21,8 +22,9 @@ angular.module 'OhMyHub.nav', <[
         filters.attributes[c].push v
         filters.indicators.push name: v, category: c
       else
-        throw "should not add a duplicated attribute into filters."
+        throw new Error "should not add a duplicated attribute into filters."
     del: (c, v) ->
+      throw new Error "try to remove undifined condition from filters." unless c? and v?
       if filters.attributes[c]? and filters.attributes[c].length > 0
         console.log "Removed filter attribute: #{v}"
         filters.attributes[c] = _.reject (-> angular.equals it, v), filters.attributes[c]
@@ -30,7 +32,7 @@ angular.module 'OhMyHub.nav', <[
         if filters.attributes[c].length == 0
           delete filters.attributes[c]
       else
-        throw "should not remove a attribute from empty filters."
+        throw new Error "should not remove a attribute from empty filters."
 
 .factory 'NavMenu', ->
   menu = {}

@@ -30,3 +30,28 @@ describe 'Nav module', ->
         expect filters.indicators.length .to.eq 0
         expect filters.attributes .to.deep.eq {}
       done!
+  describe 'NavFilters.add', -> ``it``
+    .. "should catch invalid arguments.", (done) ->
+      NavFilters <- inject
+      expect (-> NavFilters.add null, 'condition is given') .to.throw Error
+      expect (-> NavFilters.add 'category is given', null) .to.throw Error
+      expect NavFilters.get!indicators.length .to.eq 0
+      expect NavFilters.get!attributes .to.deep.eq {}
+      done!
+    .. "should catch duplicate conditions.", (done) ->
+      NavFilters <- inject 
+      NavFilters.add "category", "Attr1"
+      expect (-> NavFilters.add "category", "Attr1") .to.throw Error
+      expect NavFilters.get!indicators.length .to.eq 1
+      done!
+  describe 'NavFilters.del', -> ``it``
+    .. "should catch invalid arguments.", (done) -> 
+      NavFilters <- inject
+      expect (-> NavFilters.del null, 'condition is given') .to.throw Error
+      expect (-> NavFilters.del 'category is given', null) .to.throw Error
+      done!
+    .. "should catch removing a condition from a empty filters.", (done) ->
+      NavFilters <- inject
+      expect (-> NavFilters.del "category", "Attr1") .to.throw Error
+      done!
+    
