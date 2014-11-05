@@ -10,6 +10,13 @@ angular.module 'OhMyHub.project', <[
       controller: \ProjectCtrl
       templateUrl: \app/project/project.html
 
+.filter 'filterProject', ->
+  (items, conds) -> 
+    _ = require 'prelude-ls'  
+    contains-any-attr = -> 
+      _.and-list [it[k] and (_.intersection v, it[k]) .length > 0 or false for k,v of conds]
+    return items |> _.filter contains-any-attr
+
 .factory 'Projects', ($http) ->
   do 
     get: (done) -> 

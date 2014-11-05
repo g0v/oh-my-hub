@@ -6,7 +6,7 @@ section#projects.views
     span(ng-if="filterd_projects.length != projects.length") showing {{filterd_projects.length}} out of 
     | {{projects.length}} projects
   #list.ui.two.column.stackable.grid
-    article.column.project(ng-repeat="project in projects | filter:filters.attributes:true | filter:filters.search_text as filterd_projects")
+    article.column.project(ng-repeat="project in projects | filterProject:filters.attributes | filter:filters.search_text as filterd_projects")
       .wrapper
         a.ui.image(href="{{project.homepage}}", target="_blank")
           img(ng-src="{{project.logo}}")
