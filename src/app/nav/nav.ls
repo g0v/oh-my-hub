@@ -67,8 +67,8 @@ angular.module 'OhMyHub.nav', <[
   $scope.goto = ->
     $location.path it
   $scope.toggleFilter = (c, v) ->
-    if $location.path != '/project'
-      $scope.goto '/project'
+    if $location.path != '/projecthub/project'
+      $scope.goto '/projecthub/project'
     if $scope.filters.attributes[c]? and v in $scope.filters.attributes[c]
       NavFilters.del c, v
     else

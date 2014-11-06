@@ -1,14 +1,14 @@
-angular.module 'OhMyHub.project', <[
+angular.module 'OhMyHub.projecthub.project', <[
   ui.router
 ]>
 
 .config ($stateProvider) ->
   $stateProvider
-    .state 'project', do
-      title: 'project'
-      url: '/project'
+    .state 'projecthub_project', do
+      title: 'Project Hub - Project'
+      url: '/projecthub/project'
       controller: \ProjectCtrl
-      templateUrl: \app/project/project.html
+      templateUrl: \app/projecthub/project/project.html
 
 .filter 'filterProject', ->
   (items, conds) -> 

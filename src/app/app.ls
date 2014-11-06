@@ -1,7 +1,7 @@
 angular.module \OhMyHub, <[
-  OhMyHub.project
-  OhMyHub.wiki
-  OhMyHub.about
+  OhMyHub.projecthub.project
+  OhMyHub.projecthub.wiki
+  OhMyHub.projecthub.about
   OhMyHub.nav
 	ui.router
 ]>
@@ -9,7 +9,7 @@ angular.module \OhMyHub, <[
 .config ($stateProvider, $urlRouterProvider) ->
   $(".ui.dropdown").dropdown();
   $(".ui.accordion").accordion();
-  $urlRouterProvider.otherwise \/project
+  $urlRouterProvider.otherwise \/projecthub/project
 .controller \AppCtrl, ($scope, $location) ->
 
 .run ['$rootScope', '$state', '$stateParams', ($rootScope,   $state,   $stateParams) ->
