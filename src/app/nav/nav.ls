@@ -56,13 +56,8 @@ angular.module 'OhMyHub.nav', <[
               counts[attrname] = Object.keys menu[attrname] .length
       return [menu, counts, toggle]
 
-.controller \NavCtrl, ($scope, $location, NavMenu, NavFilters, Projects) ->
+.controller \NavCtrl, ($scope, $location, NavFilters) ->
   $scope.filters = NavFilters.get!
-  projects <- Projects.get!
-  [menu, counts, toggle] = NavMenu.create projects
-  $scope.counts = counts
-  $scope.menu = menu
-  $scope.toggle = toggle
 
   $scope.goto = ->
     $location.path it

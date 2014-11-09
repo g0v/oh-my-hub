@@ -29,7 +29,7 @@ angular.module 'OhMyHub.projecthub.project', <[
           console.error it
           done []
 
-.controller \ProjectCtrl, ($scope, NavFilters, Projects) ->
+.controller \ProjectCtrl, ($scope, NavFilters, NavMenu, Projects) ->
   $scope.icon_css = {
     "Android": "android",
     "iOS": "apple",
@@ -50,6 +50,10 @@ angular.module 'OhMyHub.projecthub.project', <[
   $scope.filters = NavFilters.get!
   $scope.delFilter = NavFilters.del
   $scope.projects <- Projects.get!
+  [menu, counts, toggle] = NavMenu.create $scope.projects
+  $scope.$parent.menu = menu
+  $scope.$parent.counts = counts
+  $scope.$parent.toggle = toggle
   $scope.showDetail = (detail) ->
     $scope.detail = detail
     $scope.toggle.detail = true
