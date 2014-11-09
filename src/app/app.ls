@@ -1,7 +1,5 @@
 angular.module \OhMyHub, <[
-  OhMyHub.projecthub.project
-  OhMyHub.projecthub.wiki
-  OhMyHub.projecthub.about
+  OhMyHub.projecthub
   OhMyHub.nav
 	ui.router
 ]>
