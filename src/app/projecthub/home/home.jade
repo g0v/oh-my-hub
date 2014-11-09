@@ -6,7 +6,7 @@ section#projects.views
     span(ng-if="filterd_projects.length != projects.length") showing {{filterd_projects.length}} out of 
     | {{projects.length}} projects
   #list.ui.two.column.stackable.grid
-    article.column.project(ng-repeat="project in projects | filterProject:filters.attributes | filter:filters.search_text as filterd_projects")
+    article.column.project(ng-repeat="project in projects | containsAnyAattr:filters.attributes | filter:filters.search_text as filterd_projects")
       .wrapper
         a.ui.image(href="{{project.homepage}}", target="_blank")
           img(ng-src="{{project.logo}}")
@@ -21,7 +21,7 @@ section#projects.views
               i.icon.forward.mail
 section#project.views                
   .ui.dimmer.page(ng-click="toggle.detail = !toggle.detail" ng-class="{'active':toggle.detail}")
-    .ui.large.modal.project(ng-class="{'active':toggle.detail}") 
+    .ui.large.modal.project(ng-class="{'active':toggle.detail}", style="margin-top: -220px;") 
       a.ui.image(href="{{detail.homepage}}", target="_blank")
         img(ng-src="{{detail.logo}}")
       h3.ui.header {{detail.name.zh}}

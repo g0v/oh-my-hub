@@ -1,4 +1,4 @@
-angular.module 'OhMyHub.projecthub.about', <[
+angular.module 'ohmyhub.projecthub.about', <[
   ui.router
 ]>
 
@@ -7,7 +7,10 @@ angular.module 'OhMyHub.projecthub.about', <[
     .state 'project_about', do
       title: 'Project Hub - About'
       url: '/projecthub/about'
-      controller: \AboutCtrl
+      hub: do
+        name: "Project Hub"
+        root: "/projecthub"
+      controller: \ProjecthubAboutCtrl
       templateUrl: \app/projecthub/about/about.html
 
-.controller \AboutCtrl, ($scope) ->
+.controller \ProjecthubAboutCtrl, ($scope) ->

@@ -1,13 +1,16 @@
-angular.module 'OhMyHub.projecthub.wiki', <[
+angular.module 'ohmyhub.projecthub.wiki', <[
   ui.router
 ]>
 
 .config ($stateProvider) ->
   $stateProvider
-    .state 'project_wiki', do
+    .state 'projecthub_wiki', do
       title: 'Project Hub - Wiki'
       url: '/projecthub/wiki'
-      controller: \WikiCtrl
+      hub: do      
+        name: "Project Hub"
+        root: '/projecthub'
+      controller: \ProjecthubWikiCtrl
       templateUrl: \app/projecthub/wiki/wiki.html
 
-.controller \WikiCtrl, ($scope) ->
+.controller \ProjecthubWikiCtrl, ($scope) ->

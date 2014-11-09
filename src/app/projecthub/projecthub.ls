@@ -1,9 +1,7 @@
-angular.module \OhMyHub.projecthub, <[
-  OhMyHub.projecthub.project
-  OhMyHub.projecthub.wiki
-  OhMyHub.projecthub.about
-	ui.router
+angular.module 'ohmyhub.projecthub', <[
+  ohmyhub.common
+  ohmyhub.projecthub.about
+  ohmyhub.projecthub.wiki
+  ohmyhub.projecthub.home
+  ui.router
 ]>
-
-.config ($stateProvider, $urlRouterProvider) ->
-  $urlRouterProvider.otherwise \/projecthub/project

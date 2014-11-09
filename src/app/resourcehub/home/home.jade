@@ -1,0 +1,16 @@
+section#projects.views
+  #filter
+    .ui.large.label(ng-repeat="filter_attr in filters.indicators") {{filter_attr.name}}
+      i.icon.delete(ng-click="delFilter(filter_attr.category, filter_attr.name)")
+  #count 
+    span(ng-if="filterd_resource.length != resource.length") showing {{filterd_resource.length}} out of 
+    | {{resources.length}} resources
+  #list.ui.two.column.stackable.grid
+    article.column.project(ng-repeat="resource in resources | containsAnyAattr:filters.attributes | filter:filters.search_text as filterd_projects")
+      .wrapper
+        a.ui.image(href="{{resource.homepage}}", target="_blank")
+          img(ng-src="{{resource.logo}}")
+        .content
+          h3.ui.header(ng-click="showDetail(resource)")
+            span.text {{resource.name.zh}}
+          p.description {{resource.intro.short.zh}}

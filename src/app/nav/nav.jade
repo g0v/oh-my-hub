@@ -1,28 +1,27 @@
 nav#sidebar(ng-controller="NavCtrl")
   .ui.menu.no.margin
-    .ui.dropdown.item  Project Hub
+    .ui.dropdown.item 
+        span(ng-bind="$state.current.hub.name")
         i.icon.dropdown
         .menu
-          a.item Resource Hub[TBD]
-          a.item Project Hub[TBD]
-          a.item Charts[TBD]
+          .item(ng-click="switchHub(hub.url)", ng-repeat="hub in activedhubs.hubs") {{hub.name}}
     .right.menu
       .ui.dropdown.icon.item
         i.icon.ellipsis.vertical
         .menu
-          .item(ng-click="goto('/projecthub/wiki')")
+          .item(ng-click="goto('wiki')")
             i.icon.pencil
-            | Edit pending data
+            | Edit 
             //-i.icon.forward.mail.right
-          .item(ng-click="goto('/projecthub/project')")
+          .item(ng-click="goto('home')")
             i.icon.unhide
-            | View projects
-          .item(ng-click="goto('/projecthub/about')")
+            | View 
+          .item(ng-click="goto('about')")
             i.icon.help
             | About
   #search.field
     .ui.icon.input
-      input(ng-click="goto('/projecthub/project')" placeholder="search...", type="text" ng-model="filters.search_text")
+      input(ng-click="goto('home')" placeholder="search...", type="text" ng-model="filters.search_text")
       i.icon.search
   #index.ui.vertical.fluid.menu.no.margin
     div.ui.accordion(ng-repeat="(menu_name, menu_items) in menu")
