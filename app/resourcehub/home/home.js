@@ -1,7 +1,7 @@
 angular.module('ohmyhub.resourcehub.home', ['ohmyhub.common', 'ui.router']).factory('Resources', function($http){
   return {
     get: function(){
-      return $http.get('/assests/resources-list.json');
+      return $http.get('assests/resources-list.json');
     }
   };
 }).config(function($stateProvider){

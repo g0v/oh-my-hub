@@ -1,7 +1,7 @@
 angular.module('ohmyhub.projecthub.home', ['ohmyhub.common', 'ui.router']).factory('Projects', function($http){
   return {
     get: function(done){
-      return $http.get('/assests/projects-list.json');
+      return $http.get('assests/projects-list.json');
     }
   };
 }).config(function($stateProvider){
