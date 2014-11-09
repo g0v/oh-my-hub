@@ -1,7 +1,8 @@
 {
     "framework": "mocha+chai",
     "src_files": [
-        "build/vendor/jquery.min.js",
+        "build/vendor/prelude-browser-min.js",
+        "build/vendor/jquery.js",
         "build/vendor/angular.min.js",
         "build/vendor/angular-mocks.js",
         "build/vendor/angular-ui-router.min.js",
