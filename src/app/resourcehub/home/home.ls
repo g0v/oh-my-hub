@@ -20,7 +20,7 @@ angular.module 'ohmyhub.resourcehub.home', <[
 
 .controller 'ResourceHubHomeCtrl', ($scope, HubMenu, Resources, FiltersStore) ->
   $scope.filters = FiltersStore.get!
-  $scope.projects = []
+  $scope.resources = []
   $scope.alerts = null
 
   Resources.get!
