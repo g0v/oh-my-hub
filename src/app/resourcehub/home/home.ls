@@ -5,7 +5,7 @@ angular.module 'ohmyhub.resourcehub.home', <[
 
 .factory 'Resources', ($http) ->
   do
-    get: -> $http.get '/assests/resources-list.json'
+    get: -> $http.get 'assests/resources-list.json'
 
 .config ($stateProvider) ->
   $stateProvider

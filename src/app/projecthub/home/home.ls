@@ -5,7 +5,7 @@ angular.module 'ohmyhub.projecthub.home', <[
 
 .factory 'Projects', ($http) ->
   do
-    get: (done) -> $http.get '/assests/projects-list.json'
+    get: (done) -> $http.get 'assests/projects-list.json'
 
 .config ($stateProvider) ->
   $stateProvider
