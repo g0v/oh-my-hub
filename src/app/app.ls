@@ -1,10 +1,18 @@
-angular.module 'ohmyhub', <[
+try 
+  templates = angular.module 'templates'
+  console.log "using template cach."
+catch
+  console.log "using html."
+
+deps = <[
   ohmyhub.common
   ohmyhub.resourcehub  
   ohmyhub.projecthub  
   ohmyhub.nav
-	ui.router
+  ui.router
 ]>
+
+angular.module 'ohmyhub', deps
 
 .config ($stateProvider, $urlRouterProvider) ->
   $urlRouterProvider.otherwise '/resourcehub/home'	

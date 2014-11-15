@@ -5,9 +5,8 @@
     "jquery": "=1.8.2",
     "angular": "*",
     "angular-mocks": "*",
-    "angular-ui-router": "~0.2.0"
-  },
-  "dependencies": {
+    "angular-ui-router": "~0.2.0",
+    "semantic-ui": "~0.19.3",
     "prelude-ls": "~1.1.1"
   }
 }

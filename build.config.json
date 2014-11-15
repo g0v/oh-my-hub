@@ -49,6 +49,10 @@
 		"vendor": [
 			"prelude-ls/browser/prelude-browser-min.js",
 			"jquery/jquery.js",
+			"semantic-ui/build/packaged/javascript/semantic.min.js",
+			"semantic-ui/build/packaged/css/semantic.min.css",
+			"semantic-ui/build/packaged/fonts/*",
+			"semantic-ui/build/packaged/images/*",			
 			"angular/angular.min.js.map",
 			"angular/angular.min.js",
 			"angular-mocks/angular-mocks.js",
