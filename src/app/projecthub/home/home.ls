@@ -3,10 +3,6 @@ angular.module 'ohmyhub.projecthub.home', <[
   ui.router
 ]>
 
-.factory 'Projects', ($http) ->
-  do
-    get: (done) -> $http.get 'assests/projects-list.json'
-
 .config ($stateProvider) ->
   $stateProvider
     .state 'projecthub_home', do
@@ -18,7 +14,7 @@ angular.module 'ohmyhub.projecthub.home', <[
       controller: 'ProjectHubHomeCtrl'
       templateUrl: 'app/projecthub/home/home.html'
 
-.controller 'ProjectHubHomeCtrl', ($scope, Projects, HubMenu, FiltersStore) ->
+.controller 'ProjectHubHomeCtrl', ($scope, HubMenu, FiltersStore, $firebase) ->
   $scope.filters = FiltersStore.get!
   $scope.icon_css = do
     "Android": "android",
@@ -37,16 +33,15 @@ angular.module 'ohmyhub.projecthub.home', <[
   $scope.projects = []
   $scope.alerts = null
 
-  Projects.get!
-    .success -> 
-      $scope.projects = it
-      [menu, counts, status] = HubMenu.create $scope.projects, <[category tag tool license]>
-      $scope.$parent.menu = menu
-      $scope.$parent.counts = counts
-      $scope.$parent.toggle = status.toggle
-      $scope.toggle.detail = false
-      $scope.showDetail = ->  
-        $scope.toggle.detail = true
-        $scope.detail = it
-    .error -> 
-      $scope.alerts = it
+  ref = new Firebase 'https://oh-my-hub.firebaseio.com/projects/'
+  sync = $firebase ref
+  $scope.projects = sync.$asArray!
+  $scope.projects.$loaded!.then ->
+    [menu, counts, status] = HubMenu.create $scope.projects, <[category tag tool license]>
+    $scope.$parent.menu = menu
+    $scope.$parent.counts = counts
+    $scope.$parent.toggle = status.toggle
+    $scope.toggle.detail = false
+  $scope.showDetail = ->  
+    $scope.toggle.detail = true
+    $scope.detail = it
