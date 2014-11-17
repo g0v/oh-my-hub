@@ -10,6 +10,7 @@ deps = <[
   ohmyhub.projecthub  
   ohmyhub.nav
   ui.router
+  firebase
 ]>
 
 angular.module 'ohmyhub', deps
