@@ -30,10 +30,9 @@ nav#sidebar(ng-controller="NavCtrl")
       .content.ui.small.menu(ng-class="{'active':toggle[menu_name]}")
         .menu
           a.item(ng-click="toggleFilter(menu_name, item_name)" ng-repeat="(item_name, item_count) in menu_items")
-<<<<<<< HEAD
+            .ui.label {{item_count}}
+            |  {{item_name}}
+  .ui.label {{item_count}} {{item_name}}
             .ui.label {{item_count}}
             |  {{item_name}}
 
-=======
-            .ui.label {{item_count}} {{item_name}}
->>>>>>> e626c80863f23458b63a1bff6cccc333e3f7454f
