@@ -56,4 +56,9 @@ angular.module 'ohmyhub.projecthub.home', <[
     $scope.index = $scope.projects.length
     $scope.toggle.detail = true
     
-
+  $scope.getGithubUrl = (project) ->
+    if typeof(project.workspace) != 'undefined'
+      for i in project.workspace
+        if i.url.search(/github.com/i) > 0
+          return i.url
+    return null
