@@ -2,6 +2,9 @@ section#projects.views
   #filter
     .ui.large.label(ng-repeat="filter_attr in filters.indicators") {{filter_attr.name}}
       i.icon.delete(ng-click="delFilter(filter_attr.category, filter_attr.name)")
+  #add-project
+      i.icon.plus(ng-click="addProject()") 
+      |新增專案 
   #count 
     span(ng-if="filterd_projects.length != projects.length") showing {{filterd_projects.length}} out of 
     | {{projects.length}} projects
@@ -11,52 +14,77 @@ section#projects.views
         a.ui.image(href="{{project.homepage}}", target="_blank")
           img(ng-src="{{project.logo}}")
         .content
-          h3.ui.header(ng-click="showDetail(project)")
+          h3.ui.header(ng-click="showDetail($index)")
+            a(href="") 
+              i.icon.pencil
             span.text {{project.name.zh}}
           p.description {{project.intro.zh.short}}
           p.achievement
             a.ui.large.label(href="{{achievement.url}}", target="_blank" ng-repeat="achievement in project.achievement")
               i.icon(ng-class="icon_css[achievement.type]") 
-              {{achievement.type}}
-              i.icon.forward.mail
-section#project.views                
-  .ui.dimmer.page(ng-click="toggle.detail = !toggle.detail" ng-class="{'active':toggle.detail}")
+              |{{achievement.type}}
+              
+          p.achievement
+            a.ui.large.label(ng-show="{{project.workspace[0].url}}" href="{{project.workspace[0].url}}", target="_blank")
+              i.icon.github
+section#project.views(ng-init="edit=false")               
+  .ui.dimmer.page(ng-class="{'active':toggle.detail}")
     .ui.large.modal.project(ng-class="{'active':toggle.detail}", style="margin-top: -220px;") 
-      a.ui.image(href="{{detail.homepage}}", target="_blank")
-        img(ng-src="{{detail.logo}}")
-      h3.ui.header {{detail.name.zh}}
-      p.description {{detail.intro.zh.short}}
+      a.ui.image(href="{{projects[index].achievement[0].url}}", target="_blank")
+        img(ng-src="{{projects[index].logo}}")
+      a(href="")
+        i.icon.pencil(ng-click="toggle.detail = !toggle.detail" ng-class="{'active':toggle.detail}")
+      h3.ui.header {{projects[index].name.zh}}
+      input(ng-model="projects[index].name.zh", ng-show="!edit" ng-change="projects.$save(projects[index])")
+      p.description {{projects[index].intro.zh.short}}
       p.achievement
-        a.ui.large.label(href="{{achievement.url}}", target="_blank" ng-repeat="achievement in detail.achievement")
+        a.ui.large.label(href="{{achievement.url}}", target="_blank" ng-repeat="achievement in projects[index].achievement")
           i.icon(ng-class="icon_css[achievement.type]") 
-          {{achievement.type}}
-          i.icon.forward.mail
+          |  {{achievement.type}}
+          
       .ui.divider.clear.both  
-      .ui.two.column.stackable.grid
+      .ui.two.column.stackable.grid(ng-show="!edit")
         .column
           .ui.grid
             .row
-              .column.four.wide 專案分類
+              .column.four.wide 專案分類 {{index}}
               .column.twelve.wide.category 
-                .ui.large.label(ng-repeat="category in detail.category") {{category}}
+                .ui.large.label {{projects[index].category[0]}}
+                select(ng-model="projects[index].category[0]" ng-options="cat for cat in category" ng-change="projects.$save(projects[index])")
               .column.four.wide 標籤
               .column.twelve.wide.tag
-                .ui.large.label(ng-repeat="tag in detail.tag") {{tag}}
+                .ui.large.label(ng-repeat="tag in projects[index].tag") {{tag}}
+              .column.four.wide 狀態
+              .column.twelve.wide.status
+                .ui.large.label {{projects[index].status}}
+                select(ng-model="projects[index].status" ng-options="cat for cat in status" ng-change="projects.$save(projects[index])")
               .column.four.wide 介紹
               .column.twelve.wide.story
-                a.ui.large.label(href="story.url", target="_blank", ng-repeat="story in detail.story") {{story.title}}
+                a.ui.large.label(href="story.url", target="_blank", ng-repeat="story in projects[index].story") {{story.title}}
         .column                
           .ui.grid
             .row
               .column.four.wide 授權
               .column.twelve.wide.license
-                .ui.large.label(ng-repeat="license in detail.license") {{license}}
+                .ui.large.label {{projects[index].license[0]}}
+                select(ng-model="projects[index].license[0]" ng-options="cat for cat in license" ng-change="projects.$save(projects[index])")
               .column.four.wide 使用工具
               .column.twelve.wide.tool
-                 .ui.large.label(ng-repeat="tool in detail.tool") {{tool}}
+                .ui.large.label(ng-repeat="tool in projects[index].tool") {{tool}}
+                select(ng-model="newTool" ng-options="cat for cat in tools")
+                button(ng-click="projects[index].tool.push(newTool);projects.$save(projects[index])" ng-if="projects[index].tool") 新增
+                button(ng-click="projects[index].tool=[];projects[index].tool.push(newTool);projects.$save(projects[index])" ng-if="!projects[index].tool") 新增
+              .column.four.wide 人員需求
+              .column.twelve.wide.needs
+                .ui.large.label(ng-repeat="need in projects[index].needs") {{need}}
+                select(ng-model="newNeeds" ng-options="cat for cat in needs")
+                button(ng-click="projects[index].needs.push(newNeeds);projects.$save(projects[index])" ng-if="projects[index].needs") 新增
+                button(ng-click="projects[index].needs=[];projects[index].needs.push(newNeeds);projects.$save(projects[index])" ng-if="!projects[index].needs") 新增
               .column.four.wide 資料來源
               .column.twelve.wide.resource
-                a.ui.large.label(href="resource.url", target="_blank", ng-repeat="resource in detail.resource") {{resource.name}}
+                a.ui.large.label(href="resource.url", target="_blank", ng-repeat="resource in projects[index].resource") {{resource.name}}
               .column.four.wide 工作區
               .column.twelve.wide.workspace
-                 a.ui.large.label(href="workspace.url", target="_blank", ng-repeat="workspace in detail.workspace") {{workspace.name}}
+                 a.ui.large.label(href="{{workspace.url}}", target="_blank", ng-repeat="workspace in projects[index].workspace") {{workspace.name}}
+
+      

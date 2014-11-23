@@ -33,15 +33,27 @@ angular.module 'ohmyhub.projecthub.home', <[
   $scope.projects = []
   $scope.alerts = null
 
-  ref = new Firebase 'https://oh-my-hub.firebaseio.com/projects/'
+  ref = new Firebase 'https://g0v-project-hub.firebaseio.com/projects'
   sync = $firebase ref
   $scope.projects = sync.$asArray!
   $scope.projects.$loaded!.then ->
     [menu, counts, status] = HubMenu.create $scope.projects, <[category tag tool license]>
     $scope.$parent.menu = menu
+    $scope.category = Object.keys($scope.menu.category)
+    $scope.license = Object.keys($scope.menu.license)
+    $scope.tools = Object.keys($scope.menu.tool)
+    $scope.status = ["Production", "In progress", "In Ideas"]
+    $scope.needs = ["開發人員","設計師","行銷人員","數據分析"]
     $scope.$parent.counts = counts
     $scope.$parent.toggle = status.toggle
     $scope.toggle.detail = false
   $scope.showDetail = ->  
     $scope.toggle.detail = true
-    $scope.detail = it
+    $scope.index = it
+   
+  $scope.addProject = ->  
+    $scope.projects.$add({hello: 'motto'})
+    $scope.index = $scope.projects.length
+    $scope.toggle.detail = true
+    
+
