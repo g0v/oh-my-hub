@@ -9,5 +9,8 @@
     "semantic-ui": "~0.19.3",
     "prelude-ls": "~1.1.1",
     "angularfire": "~0.8.2"
+  },
+  "dependencies": {
+    "angular-github-adapter": "~0.1.2"
   }
 }
