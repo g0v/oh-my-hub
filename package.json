@@ -11,7 +11,7 @@
       "type": "git",
       "url": "https://github.com/g0v/oh-my-hub"
     }
-  ],  
+  ],
   "description": "Oh! My Hub",
   "version": "0.0.1",
   "engines": {
@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "beef-soup": "git://github.com/hychen/beef-soup.git",
-    "gulp":"*",
+    "gulp": "*",
     "gulp-jade": "0.9.x",
     "gulp-compass": "^2.0.0",
     "gulp-livescript": "1.1.x",

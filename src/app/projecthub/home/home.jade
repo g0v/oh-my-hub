@@ -19,11 +19,12 @@ section#projects.views
               i.icon.pencil
             span.text {{project.name.zh}}
           p.description {{project.intro.zh.short}}
+          p.secondary-info(ng-show="project.updated_at != null") 上次更新 {{project.updated_at | date:'yyyy-MM-dd' }}
+          p.secondary-info(ng-show="project.open_issues_count != null") 目前問題數 {{project.open_issues_count}}
           p.achievement
             a.ui.large.label(href="{{achievement.url}}", target="_blank" ng-repeat="achievement in project.achievement")
               i.icon(ng-class="icon_css[achievement.type]") 
               |{{achievement.type}}
-              
           p.achievement
             a.ui.large.label(ng-show="{{project.workspace[0].url}}" href="{{project.workspace[0].url}}", target="_blank")
               i.icon.github
@@ -41,7 +42,6 @@ section#project.views(ng-init="edit=false")
         a.ui.large.label(href="{{achievement.url}}", target="_blank" ng-repeat="achievement in projects[index].achievement")
           i.icon(ng-class="icon_css[achievement.type]") 
           |  {{achievement.type}}
-          
       .ui.divider.clear.both  
       .ui.two.column.stackable.grid(ng-show="!edit")
         .column
@@ -86,5 +86,3 @@ section#project.views(ng-init="edit=false")
               .column.four.wide 工作區
               .column.twelve.wide.workspace
                  a.ui.large.label(href="{{workspace.url}}", target="_blank", ng-repeat="workspace in projects[index].workspace") {{workspace.name}}
-
-      
