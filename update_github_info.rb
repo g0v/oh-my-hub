@@ -2,7 +2,7 @@ require 'firebase'
 require 'pry'
 require 'github_api'
 
-base_uri = 'https://oh-my-hub.firebaseio.com/'
+base_uri = 'https://g0v-project-hub.firebaseio.com/'
 firebase = Firebase::Client.new(base_uri)
 
 response = firebase.get('projects')

@@ -84,6 +84,10 @@ section#project.views
               .column.four.wide 資料來源
               .column.twelve.wide.resource
                 a.ui.large.label(href="resource.url", target="_blank", ng-repeat="resource in projects[index].resource") {{resource.name}}
-              .column.four.wide 工作區
+              .column.four.wide Github
               .column.twelve.wide.workspace
-                 a.ui.large.label(href="{{workspace.url}}", target="_blank", ng-repeat="workspace in projects[index].workspace") {{workspace.name}}
+                a.ui.large.label(href="{{workspace.url}}", target="_blank", ng-repeat="workspace in projects[index].workspace")
+                    i.icon.github
+                input(ng-model="newWorkspace" type="text")
+                button(ng-click="projects[index].workspace.push({url: newWorkspace);projects.$save(projects[index]);newWorkspace=''" ng-if="projects[index].workspace") 新增
+                button(ng-click="projects[index].workspace=[];projects[index].workspace.push({url: newWorkspace});projects.$save(projects[index]);newWorkspace=''" ng-if="!projects[index].workspace") 新增

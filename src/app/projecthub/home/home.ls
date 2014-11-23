@@ -33,7 +33,7 @@ angular.module 'ohmyhub.projecthub.home', <[
   $scope.projects = []
   $scope.alerts = null
 
-  ref = new Firebase 'https://oh-my-hub.firebaseio.com/projects'
+  ref = new Firebase 'https://g0v-project-hub.firebaseio.com/projects'
   sync = $firebase ref
   $scope.projects = sync.$asArray!
   $scope.projects.$loaded!.then ->
