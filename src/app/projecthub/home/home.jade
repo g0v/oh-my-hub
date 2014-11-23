@@ -19,16 +19,16 @@ section#projects.views
               i.icon.pencil
             span.text {{project.name.zh}}
           p.description {{project.intro.zh.short}}
-          p.secondary-info(ng-show="project.updated_at != null") 上次更新 {{project.updated_at | date:'yyyy-MM-dd' }}
-          p.secondary-info(ng-show="project.open_issues_count != null") 目前問題數 {{project.open_issues_count}}
           p.achievement
             a.ui.large.label(href="{{achievement.url}}", target="_blank" ng-repeat="achievement in project.achievement")
               i.icon(ng-class="icon_css[achievement.type]") 
               |{{achievement.type}}
-          p.achievement
-            a.ui.large.label(ng-show="getGithubUrl(project) != null" href="{{getGithubUrl(project)}}", target="_blank")
+          p.secondary-info
+            a.ui(ng-show="getGithubUrl(project) != null" href="{{getGithubUrl(project)}}", target="_blank")
               i.icon.github
-              | Github
+            span.github-detail(ng-show="project.created_at != null") 專案開始於 {{project.created_at | date:'yyyy-MM-dd' }} |
+            span.github-detail(ng-show="project.updated_at != null") 上次更新 {{project.updated_at | date:'yyyy-MM-dd' }} |
+            span.github-detail(ng-show="project.open_issues_count != null") 目前問題數 {{project.open_issues_count}}
 section#project.views(ng-init="edit=false")               
   .ui.dimmer.page(ng-class="{'active':toggle.detail}")
     .ui.large.modal.project(ng-class="{'active':toggle.detail}", style="margin-top: -220px;") 
