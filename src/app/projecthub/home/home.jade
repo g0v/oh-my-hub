@@ -18,10 +18,9 @@ section#projects.views
           p.secondary-info(ng-show="project.open_issues_count != null") 目前問題數 {{project.open_issues_count}}
           p.achievement
             a.ui.large.label(href="{{achievement.url}}", target="_blank" ng-repeat="achievement in project.achievement")
-              i.icon(ng-class="icon_css[achievement.type]") 
-              {{achievement.type}}
+              i.icon(ng-class="icon_css[achievement.type]") {{achievement.type}}
               i.icon.forward.mail
-section#project.views                
+section#project.views
   .ui.dimmer.page(ng-click="toggle.detail = !toggle.detail" ng-class="{'active':toggle.detail}")
     .ui.large.modal.project(ng-class="{'active':toggle.detail}", style="margin-top: -220px;") 
       a.ui.image(href="{{detail.homepage}}", target="_blank")
@@ -30,8 +29,7 @@ section#project.views
       p.description {{detail.intro.zh.short}}
       p.achievement
         a.ui.large.label(href="{{achievement.url}}", target="_blank" ng-repeat="achievement in detail.achievement")
-          i.icon(ng-class="icon_css[achievement.type]") 
-          {{achievement.type}}
+          i.icon(ng-class="icon_css[achievement.type]") {{achievement.type}}
           i.icon.forward.mail
       .ui.divider.clear.both  
       .ui.two.column.stackable.grid
