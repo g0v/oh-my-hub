@@ -34,7 +34,7 @@ section#project.views
       a.ui.image(href="{{projects[index].achievement[0].url}}", target="_blank")
         img(ng-src="{{projects[index].logo}}")
       a(href="")
-        i.icon.pencil(ng-click="toggle.detail = !toggle.detail" ng-class="{'active':toggle.detail}")
+        i#modal-close.icon.close(ng-click="toggle.detail = !toggle.detail" ng-class="{'active':toggle.detail}")
       h3.ui.header {{projects[index].name.zh}}
       input(ng-model="projects[index].name.zh", ng-show="!edit" ng-change="projects.$save(projects[index])")
       p.description {{projects[index].intro.zh.short}}
