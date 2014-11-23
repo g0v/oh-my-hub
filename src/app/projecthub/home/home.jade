@@ -48,7 +48,7 @@ section#project.views
         .column
           .ui.grid
             .row
-              .column.four.wide 專案分類 {{index}}
+              .column.four.wide 專案分類
               .column.twelve.wide.category 
                 .ui.large.label {{projects[index].category[0]}}
                 select(ng-model="projects[index].category[0]" ng-options="cat for cat in category" ng-change="projects.$save(projects[index])")
