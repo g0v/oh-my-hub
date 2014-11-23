@@ -1,6 +1,7 @@
 angular.module 'ohmyhub.projecthub.home', <[
   ohmyhub.common
   ui.router
+  pascalprecht.github-adapter
 ]>
 
 .config ($stateProvider) ->
