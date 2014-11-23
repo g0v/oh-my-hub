@@ -26,8 +26,9 @@ section#projects.views
               i.icon(ng-class="icon_css[achievement.type]") 
               |{{achievement.type}}
           p.achievement
-            a.ui.large.label(ng-show="{{project.workspace[0].url}}" href="{{project.workspace[0].url}}", target="_blank")
+            a.ui.large.label(ng-show="getGithubUrl(project) != null" href="{{getGithubUrl(project)}}", target="_blank")
               i.icon.github
+              | Github
 section#project.views(ng-init="edit=false")               
   .ui.dimmer.page(ng-class="{'active':toggle.detail}")
     .ui.large.modal.project(ng-class="{'active':toggle.detail}", style="margin-top: -220px;") 
