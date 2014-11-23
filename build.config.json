@@ -52,13 +52,11 @@
 			"semantic-ui/build/packaged/javascript/semantic.min.js",
 			"semantic-ui/build/packaged/css/semantic.min.css",
 			"semantic-ui/build/packaged/fonts/*",
-			"semantic-ui/build/packaged/images/*",
+			"semantic-ui/build/packaged/images/*",			
 			"angular/angular.min.js.map",
 			"angular/angular.min.js",
 			"angular-mocks/angular-mocks.js",
 			"angular-ui-router/release/angular-ui-router.min.js",
-			"github/github.js",
-			"angular-github-adapter/angular-github-adapter.js",
 			"firebase/firebase.js",
                         "angularfire/dist/angularfire.min.js"
 		]
