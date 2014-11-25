@@ -11,8 +11,8 @@ response.each_page do |page|
 		begin
 			stargazers_count = element.stargazers_count / 3
 			watchers_count = element.watchers_count / 3
-			issues_count = element.open_issues_count / 2
-			forks_count = element.forks_count 
+			issues_count = element.open_issues_count 
+			forks_count = element.forks_count *2
 			if element.homepage
 				homepage = 20
 			else

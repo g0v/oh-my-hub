@@ -27,7 +27,7 @@ response.body.each do |element|
   end
 end
 #log in to get more rate-limit
-#github = Github.new basic_auth: 'username:pwd'
+github = Github.new basic_auth: 'username:pwd'
 
 gh_response = github.repos.list org: 'g0v'
 gh_response.each_page do |page|
@@ -39,8 +39,8 @@ gh_response.each_page do |page|
 			    watchers_count = element.watchers_count / 3
 			    subscribers = element.subscribers_count || 0
 			    subscribers_count = subscribers / 3
-			    issues_count = element.open_issues_count / 2
-			    forks_count = element.forks_count 
+			    issues_count = element.open_issues_count 
+			    forks_count = element.forks_count * 2
 			    if element.homepage
 			      homepage = 20
 			    else

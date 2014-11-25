@@ -4,7 +4,7 @@ require 'github_api'
 
 #This script fetches those projects with a github url and updates
 #its github info as well as computes a score based on github activity
-
+github = Github.new basic_auth: 'hsin421:hsnu96315'
 base_uri = 'https://g0v-project-hub.firebaseio.com/'
 firebase = Firebase::Client.new(base_uri)
 response = firebase.get('projects')
@@ -17,13 +17,13 @@ response.body.each do |key, element|
     repo_name = url_split[-1]
     user_name = url_split[-2]
 
-    response = Github.repos.get(user_name, repo_name)
+    response = github.repos.get(user_name, repo_name)
     if response.status == 200
       stargazers_count = response.body.stargazers_count / 3
       watchers_count = response.body.watchers_count / 3
       subscribers_count = response.body.subscribers_count / 3
-      issues_count = response.body.open_issues_count / 2
-      forks_count = response.body.forks_count 
+      issues_count = response.body.open_issues_count 
+      forks_count = response.body.forks_count * 2
       if response.body.homepage
         homepage = 20
       else

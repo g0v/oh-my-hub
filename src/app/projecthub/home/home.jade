@@ -3,13 +3,19 @@ section#projects.views
     .ui.large.label(ng-repeat="filter_attr in filters.indicators") {{filter_attr.name}}
       i.icon.delete(ng-click="delFilter(filter_attr.category, filter_attr.name)")
   #add-project
-      i.icon.plus(ng-click="addProject()") 
-      |新增專案 
+    i.icon.plus(ng-click="addProject()") 
+    |新增專案 
+  #order-by(style="float:right") 
+    span.github-detail.sort(ng-click="sort = 'score'; reverse = !reverse") 活躍度 |
+    span.github-detail.sort(ng-click="sort = 'created_at'; reverse = !reverse")  開始日期 |
+    span.github-detail.sort(ng-click="sort = 'updated_at'; reverse = !reverse")  上次更新   
+  br
+  br
   #count 
     span(ng-if="filterd_projects.length != projects.length") showing {{filterd_projects.length}} out of 
     | {{projects.length}} projects
-  #list.ui.two.column.stackable.grid
-    article.column.project(ng-repeat="project in projects | orderBy:'score':true | containsAnyAattr:filters.attributes | filter:filters.search_text as filterd_projects")
+  #list.ui.two.column.stackable.grid(ng-init="sort = 'score';reverse = true")
+    article.column.project(ng-repeat="project in projects | orderBy:sort:reverse | containsAnyAattr:filters.attributes | filter:filters.search_text as filterd_projects")
       .wrapper
         a.ui.image(href="{{project.homepage}}", target="_blank")
           img(ng-src="{{project.logo}}")
