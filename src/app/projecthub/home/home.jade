@@ -9,12 +9,12 @@ section#projects.views
     span(ng-if="filterd_projects.length != projects.length") showing {{filterd_projects.length}} out of 
     | {{projects.length}} projects
   #list.ui.two.column.stackable.grid
-    article.column.project(ng-repeat="project in projects | containsAnyAattr:filters.attributes | filter:filters.search_text as filterd_projects")
+    article.column.project(ng-repeat="project in projects | orderBy:'score':true | containsAnyAattr:filters.attributes | filter:filters.search_text as filterd_projects")
       .wrapper
         a.ui.image(href="{{project.homepage}}", target="_blank")
           img(ng-src="{{project.logo}}")
         .content
-          h3.ui.header(ng-click="showDetail($index)")
+          h3.ui.header(ng-click="showDetail(project)")
             a(href="") 
               i.icon.pencil
             span.text {{project.name.zh}}
@@ -28,15 +28,16 @@ section#projects.views
               i.icon.github
             span.github-detail(ng-show="project.created_at != null") 專案開始於 {{project.created_at | date:'yyyy-MM-dd' }} |
             span.github-detail(ng-show="project.updated_at != null") 上次更新 {{project.updated_at | date:'yyyy-MM-dd' }} |
-            span.github-detail(ng-show="project.open_issues_count != null") 目前問題數 {{project.open_issues_count}}
+            span.github-detail(ng-show="project.score != null") 活躍度 {{project.score}}
+            span.github-detail(ng-show="project.score == 0 || null") 請輸入Github Repo連結來取得活躍度！ 
 section#project.views           
   .ui.dimmer.page(ng-class="{'active':toggle.detail}")
     .ui.large.modal.project(ng-class="{'active':toggle.detail}", style="margin-top: -220px;") 
       a.ui.image(href="{{projects[index].achievement[0].url}}", target="_blank")
-        img(ng-src="{{projects[index].logo}}")
+        img(ng-src="{{projects[index].logo || '//:0'}}")
       a(href="")
         i#modal-close.icon.close(ng-click="toggle.detail = !toggle.detail" ng-class="{'active':toggle.detail}")
-      h3.ui.header {{projects[index].name.zh}}
+      h3.ui.header {{projects[index].name.zh}} & {{index}}
       input(ng-model="projects[index].name.zh", ng-show="!edit" ng-change="projects.$save(projects[index])")
       p.description {{projects[index].intro.zh.short}}
       p.achievement
@@ -48,7 +49,7 @@ section#project.views
         .column
           .ui.grid
             .row
-              .column.four.wide 專案分類 {{index}}
+              .column.four.wide 專案分類
               .column.twelve.wide.category 
                 .ui.large.label {{projects[index].category[0]}}
                 select(ng-model="projects[index].category[0]" ng-options="cat for cat in category" ng-change="projects.$save(projects[index])")

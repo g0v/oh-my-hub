@@ -29,7 +29,9 @@ angular.module 'ohmyhub.projecthub.home', <[
     "Safari": "browser"
     "API": "setting",
     "Document": "text file",
-    "Media":"bullhorn"    
+    "Media":"bullhorn",
+    "Web":"laptop",
+    "Data":"dashboard"    
   $scope.projects = []
   $scope.alerts = null
 
@@ -49,7 +51,8 @@ angular.module 'ohmyhub.projecthub.home', <[
     $scope.toggle.detail = false
   $scope.showDetail = ->  
     $scope.toggle.detail = true
-    $scope.index = it
+    ind = $scope.projects.indexOf(it)
+    $scope.index = ind
    
   $scope.addProject = ->  
     $scope.projects.$add({hello: 'motto'})
