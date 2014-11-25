@@ -20,7 +20,7 @@ section#projects.views
             span.text {{project.name.zh}}
           p.description {{project.intro.zh.short}}
           p.achievement
-            a.ui.large.label(href="{{achievement.url}}", target="_blank" ng-repeat="achievement in project.achievement")
+            a.ui.large.label(href="{{achievement.url}}", target="_blank" ng-repeat="achievement in project.achievement" ng-show="achievement.url")
               i.icon(ng-class="icon_css[achievement.type]") 
               |{{achievement.type}}
           p.secondary-info
@@ -37,11 +37,11 @@ section#project.views
         img(ng-src="{{projects[index].logo || '//:0'}}")
       a(href="")
         i#modal-close.icon.close(ng-click="toggle.detail = !toggle.detail" ng-class="{'active':toggle.detail}")
-      h3.ui.header {{projects[index].name.zh}} & {{index}}
+      h3.ui.header {{projects[index].name.zh}}
       input(ng-model="projects[index].name.zh", ng-show="!edit" ng-change="projects.$save(projects[index])")
       p.description {{projects[index].intro.zh.short}}
       p.achievement
-        a.ui.large.label(href="{{achievement.url}}", target="_blank" ng-repeat="achievement in projects[index].achievement")
+        a.ui.large.label(href="{{achievement.url}}", target="_blank" ng-repeat="achievement in projects[index].achievement" ng-show="achievement.url")
           i.icon(ng-class="icon_css[achievement.type]") 
           |  {{achievement.type}}
       .ui.divider.clear.both  
