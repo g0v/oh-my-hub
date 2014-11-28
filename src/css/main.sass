@@ -40,6 +40,12 @@ a, a:link
 .clear.both
   clear: both
 
+.project
+  .secondary-info
+    font-size: 0.7rem
+  .github-detail
+    margin-right: 5px
+
 #sidebar
   width: 15rem
   position: absolute
@@ -80,6 +86,15 @@ a, a:link
     padding-right: 1rem
     color: rgba(#000,0.5)
     text-align: right
+  #add-project
+    width: 15%
+    height: 8%
+    border: black
+    background-color: white
+    border-radius: 3%
+    padding-top: 12px
+    padding-left: 9px
+
   #list
     padding: 1rem
     .column
@@ -117,8 +132,12 @@ a, a:link
     width: 30%
     max-width: 10rem
     margin: 0 0 0 1rem
+    background-color: rgba(249,249,249, 0.7)
     img
       width: 100%
+      border: solid white 2px
+      border-radius: 5rem
+      background-color: rgba(#fff, 0.7)
   .ui.label
     margin: 0.2rem
     .icon:last-child
@@ -144,3 +163,15 @@ a, a:link
     width: 100%
     height: 100%
     border: none
+
+#modal-close
+  position: relative
+  float: right
+  left: 20%
+
+#order-by
+  cursor: pointer
+
+.sort
+  :hover
+    border: thick
