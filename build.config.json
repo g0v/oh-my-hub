@@ -60,6 +60,15 @@
 			"firebase/firebase.js",
                         "angularfire/dist/angularfire.min.js"
 		]
-	}
+	},
+        "cdn": [
+                "google:angular",
+                "cdn:jquery"
+        ],
+        "deploy": {
+                "github": {
+                        "repo": "https://github.com/g0v/oh-my-hub.git"
+                }
+        }
 }
 
