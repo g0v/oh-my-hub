@@ -13,6 +13,9 @@ deps = <[
   firebase
 ]>
 
+if templates?
+ deps.unshift 'templates'
+
 angular.module 'ohmyhub', deps
 
 .config ($stateProvider, $urlRouterProvider) ->

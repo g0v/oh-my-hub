@@ -10,6 +10,8 @@ Oh My Hub
 - development:
     - gulp watch
     - gulp open 
+- deploy:
+    - gulp deploy
 
 ## Hubs
 
