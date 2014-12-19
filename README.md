@@ -5,13 +5,14 @@ Oh My Hub
 
 - pre-dev:
     - install: node
-    - install: ruby 2.0.0 (use rubyuinstaller on windows, use rvm install 2.0.0 on - linux/mac)
-    - install compass (gem install compass)
+    - install: ruby 2.1.5 (use rubyuinstaller on windows, use rvm install 2.1.5 on linux/mac)
+    - install compass (`gem install compass`)
+    - Install gem dependency `bundle install`
 - development:
-    - gulp watch
-    - gulp open 
+    - `gulp watch`
+    - `gulp open`
 - deploy:
-    - gulp deploy
+    - `gulp deploy`
 
 ## Hubs
 
