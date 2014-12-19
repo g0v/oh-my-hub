@@ -4,7 +4,8 @@ require 'github_api'
 
 #This script fetches those projects with a github url and updates
 #its github info as well as computes a score based on github activity
-github = Github.new basic_auth: 'hsin421:hsnu96315'
+#use your github log in below
+github = Github.new basic_auth: 'YOUR-USERNAME:PASSWORD'
 base_uri = 'https://g0v-project-hub.firebaseio.com/'
 firebase = Firebase::Client.new(base_uri)
 response = firebase.get('projects')
